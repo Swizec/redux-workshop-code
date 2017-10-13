@@ -36,9 +36,7 @@ const SearchableEventList = ({ events, getItems, children }) => (
                 />
 
                 <EventList events={getItems(inputValue)}>
-                    {({ event }) => (
-                        <SelectableEvent event={event} key={event.id} />
-                    )}
+                    {props => children(props)}
                 </EventList>
             </div>
         )}
