@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { createSelector } from "reselect";
 
 const defaultState = { events: [], page: 0 };
 
@@ -33,6 +34,13 @@ function shoppingCart(state = { items: [] }, action) {
             return state;
     }
 }
+
+export const isInShoppingCart = createSelector(
+    [(state, item) => item.id, (state, item) => state.shoppingCart],
+    (itemId, shoppingCart) => {
+        return shoppingCart.items.map(item => item.id).includes(itemId);
+    }
+);
 
 const rootReducer = combineReducers({
     events,

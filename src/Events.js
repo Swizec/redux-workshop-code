@@ -65,11 +65,7 @@ class Events extends React.Component {
                 />
                 <SearchableEventList events={events} getItems={this.getItems}>
                     {({ event }) => (
-                        <SelectableEvent
-                            item={event}
-                            key={event.id}
-                            onClick={item => addItemToCart(item)}
-                        />
+                        <SelectableEvent item={event} key={event.id} />
                     )}
                 </SearchableEventList>
                 <Button

@@ -1,10 +1,10 @@
 import React from "react";
-import { addToCart } from "./actions";
 import styled from "styled-components";
 import format from "date-fns/format";
 import { connect } from "react-redux";
 
 import { isInShoppingCart } from "./reducer";
+import { addItemToCart } from "./actions";
 
 export const EventStyle = styled.div`
     display: flex;
@@ -52,4 +52,25 @@ const SelectableEvent = ({ item, onClick }) => (
     </SelectableEventStyle>
 );
 
-export { SelectableEvent };
+const SelectedEvent = ({ item }) => (
+    <SelectedEventStyle>
+        <Event event={item} />
+    </SelectedEventStyle>
+);
+
+const SelectableEventContainer = connect(
+    (state, props) => ({
+        selected: isInShoppingCart(state, props.item)
+    }),
+    {
+        addItemToCart
+    }
+)(({ item, selected, addItemToCart }) => {
+    return selected ? (
+        <SelectedEvent item={item} />
+    ) : (
+        <SelectableEvent item={item} onClick={addItemToCart} />
+    );
+});
+
+export { SelectableEventContainer as SelectableEvent };
