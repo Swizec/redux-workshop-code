@@ -20,8 +20,15 @@ function events(state = defaultState, action) {
     }
 }
 
+function shoppingCart(state = { items: [] }, action) {
+    // default is same
+    // on add action, add to items list
+    return; ///
+}
+
 const rootReducer = combineReducers({
-    events
+    events,
+    shoppingCart
 });
 
 export default rootReducer;

@@ -78,7 +78,8 @@ class Events extends React.Component {
 }
 
 const mapDispatchToProps = {
-    fetchEventsNextPage
+    fetchEventsNextPage,
+    addItemToCart
 };
 
 function mapStateToProps(state) {
