@@ -17,9 +17,13 @@ const EventListStyled = styled.div`
     margin: 0 auto;
 `;
 
+const EventList; // component that renders its children in a loop
+
 const Events = ({ events, fetchEventsNextPage }) => (
     <div>
-        <p>Got {events.length} tickets</p>
+        <EventList events={events}>
+            {({ event }) => <SelectableEvent event={event} key={event.id} />}
+        </EventList>
         <Button
             label="Get more tickets"
             onClick={() => fetchEventsNextPage()}

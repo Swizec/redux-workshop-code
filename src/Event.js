@@ -35,3 +35,7 @@ const EventMeta = styled.div`
     flex: 2;
     padding: 20px;
 `;
+
+const SelectableEvent = ({ event }) => <h2>{event.name}</h2>;
+
+export { SelectableEvent };
