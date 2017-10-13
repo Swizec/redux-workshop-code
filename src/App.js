@@ -10,7 +10,7 @@ import ShoppingCart from "./ShoppingCart";
 
 class AppContainer extends Component {
     render() {
-        const { items, purchases } = this.props;
+        const { cartSize, purchases } = this.props;
 
         return (
             <div className="App">
@@ -18,7 +18,7 @@ class AppContainer extends Component {
                     <nav>
                         <Link to="/events">Event Listing</Link>
                         &nbsp;|&nbsp;
-                        <Link to="/cart">Shopping Cart ({items})</Link>
+                        <Link to="/cart">Shopping Cart ({cartSize})</Link>
                         &nbsp;|&nbsp; Total purchases: {purchases}
                     </nav>
                 </header>
@@ -32,7 +32,9 @@ class AppContainer extends Component {
 }
 
 function mapStateToProps({ shoppingCart, checkout }) {
-    return {};
+    return {
+        cartSize: shoppingCart.items.length
+    };
 }
 
 export default withRouter(connect(mapStateToProps)(AppContainer));
