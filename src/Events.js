@@ -4,7 +4,7 @@ import styled from "styled-components";
 import matchSorter from "match-sorter";
 
 import Downshift from "downshift";
-import { fetchEventsNextPage, fetchEvents } from "./actions";
+import { fetchEventsNextPage, fetchEvents, addItemToCart } from "./actions";
 
 import { Button, Input } from "./FormElements";
 
@@ -55,7 +55,7 @@ class Events extends React.Component {
     };
 
     render() {
-        const { events, fetchEventsNextPage } = this.props;
+        const { events, fetchEventsNextPage, addItemToCart } = this.props;
 
         return (
             <div>
@@ -65,7 +65,11 @@ class Events extends React.Component {
                 />
                 <SearchableEventList events={events} getItems={this.getItems}>
                     {({ event }) => (
-                        <SelectableEvent event={event} key={event.id} />
+                        <SelectableEvent
+                            item={event}
+                            key={event.id}
+                            onClick={item => addItemToCart(item)}
+                        />
                     )}
                 </SearchableEventList>
                 <Button

@@ -23,7 +23,15 @@ function events(state = defaultState, action) {
 function shoppingCart(state = { items: [] }, action) {
     // default is same
     // on add action, add to items list
-    return; ///
+    switch (action.type) {
+        case "CART_ADD_ITEM":
+            return {
+                ...state,
+                items: state.items.concat(action.item)
+            };
+        default:
+            return state;
+    }
 }
 
 const rootReducer = combineReducers({

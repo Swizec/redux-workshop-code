@@ -46,9 +46,9 @@ export const Event = ({ event }) => [
     </EventMeta>
 ];
 
-const SelectableEvent = ({ event }) => (
-    <SelectableEventStyle>
-        <Event event={event} />
+const SelectableEvent = ({ item, onClick }) => (
+    <SelectableEventStyle onClick={() => onClick(item)}>
+        <Event event={item} />
     </SelectableEventStyle>
 );
 

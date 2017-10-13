@@ -32,7 +32,11 @@ function fetchEventsNextPage() {
     };
 }
 
-// implement action generator that adds items to cart
-// not a thunk
+function addItemToCart(item) {
+    return {
+        type: "CART_ADD_ITEM",
+        item
+    };
+}
 
-export { fetchEvents, fetchEventsNextPage };
+export { fetchEvents, fetchEventsNextPage, addItemToCart };
