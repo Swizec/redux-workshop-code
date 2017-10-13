@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-const defaultState = { events: [] };
+const defaultState = { events: [], page: 0 };
 
 function events(state = defaultState, action) {
     switch (action.type) {

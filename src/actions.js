@@ -14,4 +14,22 @@ function fetchEvents() {
     };
 }
 
-export { fetchEvents };
+function fetchEventsNextPage() {
+    return function(dispatch, getState) {
+        const { page } = getState().events;
+
+        return Api.events(page + 1).then(({ events }) => {
+            // dispatch function to store events
+            dispatch({
+                type: "EVENTS_RECEIVED",
+                events
+            });
+            dispatch({
+                type: "EVENTS_INC_PAGE",
+                page: page + 1
+            });
+        });
+    };
+}
+
+export { fetchEvents, fetchEventsNextPage };

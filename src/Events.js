@@ -37,7 +37,7 @@ const Events = ({ events, fetchEventsNextPage }) => (
 );
 
 const mapDispatchToProps = {
-    fetchEventsNextPage: fetchEvents
+    fetchEventsNextPage
 };
 
 function mapStateToProps(state) {
