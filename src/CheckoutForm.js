@@ -93,6 +93,8 @@ const CheckoutForm = reduxForm({
 ));
 
 class CheckoutContainer extends React.Component {
+    onSubmit = values => this.context.store.dispatch(checkoutTickets(values));
+
     render() {
         const { items, person } = this.props;
 
@@ -106,6 +108,9 @@ class CheckoutContainer extends React.Component {
         );
     }
 }
+CheckoutContainer.contextTypes = {
+    store: PropTypes.object
+};
 
 export default connect(state => ({
     person: state.checkout.person,

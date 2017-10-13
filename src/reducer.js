@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { createSelector } from "reselect";
+import { reducer as formReducer } from "redux-form";
 
 const defaultState = { events: [], page: 0 };
 
@@ -52,7 +53,8 @@ function checkout(state = { person: {}, purchases: [] }, action) {
 const rootReducer = combineReducers({
     events,
     shoppingCart,
-    checkout
+    checkout,
+    form: formReducer
 });
 
 export default rootReducer;
