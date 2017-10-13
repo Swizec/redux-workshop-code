@@ -24,17 +24,60 @@ const EventList = ({ events, children }) => (
     </EventListStyled>
 );
 
-const Events = ({ events, fetchEventsNextPage }) => (
-    <div>
-        <Button
-            label="Get more tickets"
-            onClick={() => fetchEventsNextPage()}
-        />
-        <EventList events={events}>
-            {({ event }) => <SelectableEvent event={event} key={event.id} />}
-        </EventList>
-    </div>
+const SearchableEventList = ({ events, getItems, children }) => (
+    <Downshift itemToString={item => (item ? item.name : "")}>
+        {({ getInputProps, isOpen, inputValue }) => (
+            <div>
+                <Input
+                    {...getInputProps({
+                        isOpen,
+                        placeholder: `Search from ${events.length} tickets`
+                    })}
+                />
+
+                <EventList events={getItems(inputValue)}>
+                    {({ event }) => (
+                        <SelectableEvent event={event} key={event.id} />
+                    )}
+                </EventList>
+            </div>
+        )}
+    </Downshift>
 );
+
+class Events extends React.Component {
+    getItems = value => {
+        const { events } = this.props;
+
+        return value
+            ? matchSorter(events, value, {
+                  keys: ["name"]
+              })
+            : events;
+    };
+
+    render() {
+        const { events, fetchEventsNextPage } = this.props;
+
+        return (
+            <div>
+                <Button
+                    label="Get more tickets"
+                    onClick={() => fetchEventsNextPage()}
+                />
+                <SearchableEventList events={events} getItems={this.getItems}>
+                    {({ event }) => (
+                        <SelectableEvent event={event} key={event.id} />
+                    )}
+                </SearchableEventList>
+                <Button
+                    label="Get more tickets"
+                    onClick={() => fetchEventsNextPage()}
+                />
+            </div>
+        );
+    }
+}
 
 const mapDispatchToProps = {
     fetchEventsNextPage
