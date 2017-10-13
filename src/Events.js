@@ -4,7 +4,8 @@ import styled from "styled-components";
 import matchSorter from "match-sorter";
 
 import Downshift from "downshift";
-import { fetchEventsNextPage } from "./actions";
+import { fetchEventsNextPage, fetchEvents } from "./actions";
+
 import { Button, Input } from "./FormElements";
 
 import { SelectableEvent } from "./Event";
@@ -24,8 +25,12 @@ const Events = ({ fetchEventsNextPage }) => (
 
 function mapDispatchToProps() {
     return {
-        fetchEventsNextPage
+        fetchEventsNextPage: fetchEvents
     };
 }
 
-export default connect(null, mapDispatchToProps)(Events);
+function mapStateToProps(state) {
+    return null;
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Events);
