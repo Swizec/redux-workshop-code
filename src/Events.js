@@ -30,7 +30,7 @@ function mapDispatchToProps() {
 }
 
 function mapStateToProps(state) {
-    return null;
+    return {};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Events);
