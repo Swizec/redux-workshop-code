@@ -26,13 +26,13 @@ const EventList = ({ events, children }) => (
 
 const Events = ({ events, fetchEventsNextPage }) => (
     <div>
-        <EventList events={events}>
-            {({ event }) => <SelectableEvent event={event} key={event.id} />}
-        </EventList>
         <Button
             label="Get more tickets"
             onClick={() => fetchEventsNextPage()}
         />
+        <EventList events={events}>
+            {({ event }) => <SelectableEvent event={event} key={event.id} />}
+        </EventList>
     </div>
 );
 
