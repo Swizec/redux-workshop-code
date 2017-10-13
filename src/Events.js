@@ -17,7 +17,12 @@ const EventListStyled = styled.div`
     margin: 0 auto;
 `;
 
-const EventList; // component that renders its children in a loop
+const EventList = ({ events, children }) => (
+    <EventListStyled>
+        <h3>{events.length} tickets</h3>
+        {events.map(event => children({ event }))}
+    </EventListStyled>
+);
 
 const Events = ({ events, fetchEventsNextPage }) => (
     <div>

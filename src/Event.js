@@ -36,6 +36,20 @@ const EventMeta = styled.div`
     padding: 20px;
 `;
 
-const SelectableEvent = ({ event }) => <h2>{event.name}</h2>;
+export const Event = ({ event }) => [
+    <EventThumbStyle key="thumb">
+        <img src={event.imageUrl} style={{ width: "100%" }} />
+    </EventThumbStyle>,
+    <EventMeta key="meta">
+        <h2>{event.name}</h2>
+        <p>{format(new Date(event.eventDateLocal), "ddd Do MMMM, hh:mma")}</p>
+    </EventMeta>
+];
+
+const SelectableEvent = ({ event }) => (
+    <SelectableEventStyle>
+        <Event event={event} />
+    </SelectableEventStyle>
+);
 
 export { SelectableEvent };
