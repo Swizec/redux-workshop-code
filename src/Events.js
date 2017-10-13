@@ -17,7 +17,7 @@ const EventListStyled = styled.div`
     margin: 0 auto;
 `;
 
-const EventList = ({ events, children }) => (
+export const EventList = ({ events, children }) => (
     <EventListStyled>
         <h3>{events.length} tickets</h3>
         {events.map(event => children({ event }))}

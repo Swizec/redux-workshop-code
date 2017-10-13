@@ -43,3 +43,7 @@ const Error = styled.span`
 const Flex1 = styled.div`
     flex: 1;
 `;
+
+const CheckoutForm = () => <div>Hai I'm a form</div>;
+
+export default CheckoutForm;

@@ -25,6 +25,7 @@ class AppContainer extends Component {
                 <div>
                     <Route exact path="/" component={Home} />
                     <Route path="/events" component={Events} />
+                    <Route path="/cart" component={ShoppingCart} />
                 </div>
             </div>
         );
