@@ -42,9 +42,17 @@ export const isInShoppingCart = createSelector(
     }
 );
 
+function checkout(state = { person: {}, purchases: [] }, action) {
+    switch (action.type) {
+        default:
+            return state;
+    }
+}
+
 const rootReducer = combineReducers({
     events,
-    shoppingCart
+    shoppingCart,
+    checkout
 });
 
 export default rootReducer;

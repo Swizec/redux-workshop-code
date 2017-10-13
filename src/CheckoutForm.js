@@ -44,6 +44,70 @@ const Flex1 = styled.div`
     flex: 1;
 `;
 
-const CheckoutForm = () => <div>Hai I'm a form</div>;
+const renderField = ({
+    Component,
+    input,
+    placeholder,
+    meta: { touched, error }
+}) => (
+    <div>
+        <Component {...input} placeholder={placeholder} />
+        {touched && error && <Error>{error}</Error>}
+    </div>
+);
 
-export default CheckoutForm;
+const CheckoutForm = reduxForm({
+    form: "checkout"
+})(({ handleSubmit, error, submitting }) => (
+    <FormStyle onSubmit={handleSubmit}>
+        <Row>
+            <Flex1>
+                <Field
+                    name="firstName"
+                    component={props =>
+                        renderField({ Component: NarrowInput, ...props })}
+                    placeholder="First Name"
+                />
+            </Flex1>
+            <Flex1>
+                <Field
+                    name="lastName"
+                    component={props =>
+                        renderField({ Component: NarrowInput, ...props })}
+                    placeholder="Last Name"
+                />
+            </Flex1>
+        </Row>
+        <Row>
+            <Field
+                name="email"
+                component={props => renderField({ Component: Input, ...props })}
+                placeholder="Email"
+            />
+        </Row>
+        <Row>{error && <strong>{error}</strong>}</Row>
+        <Row>
+            <Button type="submit" label="Get Tickets" disabled={submitting} />
+        </Row>
+    </FormStyle>
+));
+
+class CheckoutContainer extends React.Component {
+    render() {
+        const { items, person } = this.props;
+
+        return (
+            <div>
+                <h1>Checkout {items.length} tickets</h1>
+
+                <CheckoutForm onSubmit={this.onSubmit} initialValues={person} />
+                <Link to="/cart">Back</Link>
+            </div>
+        );
+    }
+}
+
+export default connect(state => ({
+    person: state.checkout.person,
+    items: state.shoppingCart.items.length
+}))(CheckoutContainer);
