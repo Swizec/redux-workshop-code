@@ -16,6 +16,16 @@ const EventListStyled = styled.div`
     margin: 0 auto;
 `;
 
-const Events = () => <div />;
+const Events = ({ fetchEventsNextPage }) => (
+    <div>
+        <Button label="Get more tickets" onClick={fetchEventsNextPage} />
+    </div>
+);
 
-export default Events;
+function mapDispatchToProps() {
+    return {
+        fetchEventsNextPage
+    };
+}
+
+export default connect(null, mapDispatchToProps)(Events);
