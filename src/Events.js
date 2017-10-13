@@ -17,8 +17,9 @@ const EventListStyled = styled.div`
     margin: 0 auto;
 `;
 
-const Events = ({ fetchEventsNextPage }) => (
+const Events = ({ events, fetchEventsNextPage }) => (
     <div>
+        <p>Got {events.length} tickets</p>
         <Button
             label="Get more tickets"
             onClick={() => fetchEventsNextPage()}
@@ -31,7 +32,9 @@ const mapDispatchToProps = {
 };
 
 function mapStateToProps(state) {
-    return {};
+    return {
+        events: state.events.events
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Events);
