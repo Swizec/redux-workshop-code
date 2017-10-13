@@ -1,8 +1,14 @@
 import { combineReducers } from "redux";
 
-function events(state = { events: [] }, action) {
+const defaultState = { events: [] };
+
+function events(state = defaultState, action) {
     switch (action.type) {
-        // what happens on EVENTS_RECEIVED
+        case "EVENTS_RECEIVED":
+            return {
+                ...state,
+                events: action.events
+            };
         default:
             return state;
     }

@@ -19,15 +19,16 @@ const EventListStyled = styled.div`
 
 const Events = ({ fetchEventsNextPage }) => (
     <div>
-        <Button label="Get more tickets" onClick={fetchEventsNextPage} />
+        <Button
+            label="Get more tickets"
+            onClick={() => fetchEventsNextPage()}
+        />
     </div>
 );
 
-function mapDispatchToProps() {
-    return {
-        fetchEventsNextPage: fetchEvents
-    };
-}
+const mapDispatchToProps = {
+    fetchEventsNextPage: fetchEvents
+};
 
 function mapStateToProps(state) {
     return {};
