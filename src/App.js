@@ -14,7 +14,7 @@ class AppContainer extends Component {
 
         return (
             <div className="App">
-                <header className="App-header">
+                <header>
                     <nav>
                         <Link to="/events">Event Listing</Link>
                         &nbsp;|&nbsp;
@@ -24,6 +24,7 @@ class AppContainer extends Component {
                 </header>
                 <div>
                     <Route exact path="/" component={Home} />
+                    <Route path="/events" component={Events} />
                 </div>
             </div>
         );

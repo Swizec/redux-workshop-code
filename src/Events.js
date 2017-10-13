@@ -15,3 +15,7 @@ const EventListStyled = styled.div`
     width: 760px;
     margin: 0 auto;
 `;
+
+const Events = () => <div />;
+
+export default Events;
