@@ -31,6 +31,11 @@ function shoppingCart(state = { items: [] }, action) {
                 ...state,
                 items: state.items.concat(action.item)
             };
+        case "PURCHASED":
+            return {
+                ...state,
+                items: []
+            };
         default:
             return state;
     }
@@ -45,10 +50,24 @@ export const isInShoppingCart = createSelector(
 
 function checkout(state = { person: {}, purchases: [] }, action) {
     switch (action.type) {
+        case "PURCHASED":
+            return {
+                ...state,
+                person: { ...state.person, ...action.person },
+                purchases: state.purchases.concat({ items: action.purchase }),
+                purchased: true
+            };
+        case "CART_ADD_ITEM":
+            return { ...state, purchased: false };
         default:
             return state;
     }
 }
+
+export const getLastPurchase = createSelector(
+    [state => state.checkout.purchases],
+    purchases => purchases[purchases.length - 1]
+);
 
 const rootReducer = combineReducers({
     events,

@@ -95,7 +95,7 @@ const CheckoutForm = reduxForm({
 class CheckoutContainer extends React.Component {
     onSubmit = values => this.context.store.dispatch(checkoutTickets(values));
 
-    render() {
+    form = () => {
         const { items, person } = this.props;
 
         return (
@@ -106,6 +106,26 @@ class CheckoutContainer extends React.Component {
                 <Link to="/cart">Back</Link>
             </div>
         );
+    };
+
+    purchased = () => {
+        const { lastPurchase: { items } } = this.props;
+
+        return (
+            <Middle>
+                <h1>You bought {items.length} tickets!</h1>
+
+                {items.map(({ name }, i) => <Row key={i}>{name}</Row>)}
+
+                <Link to="/events">Get more</Link>
+            </Middle>
+        );
+    };
+
+    render() {
+        const { purchased } = this.props;
+
+        return purchased ? this.purchased() : this.form();
     }
 }
 CheckoutContainer.contextTypes = {
@@ -114,5 +134,7 @@ CheckoutContainer.contextTypes = {
 
 export default connect(state => ({
     person: state.checkout.person,
-    items: state.shoppingCart.items.length
+    items: state.shoppingCart.items.length,
+    lastPurchase: getLastPurchase(state),
+    purchased: state.checkout.purchased
 }))(CheckoutContainer);
