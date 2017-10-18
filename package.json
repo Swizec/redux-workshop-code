@@ -5,7 +5,11 @@
   "dependencies": {
     "date-fns": "^1.29.0",
     "downshift": "^1.11.1",
+    "express": "^4.16.2",
+    "ignore-styles": "^5.0.1",
+    "isomorphic-fetch": "^2.2.1",
     "match-sorter": "^2.0.2",
+    "morgan": "^1.9.0",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -15,10 +19,10 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-form": "^7.1.1",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
-    "styled-components": "^2.2.1",
-    "redux-logger": "^3.0.6"
+    "styled-components": "^2.2.1"
   },
   "devDependencies": {
     "react-scripts": "1.0.14"
@@ -27,6 +31,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:server": "NODE_ENV=development node server/index.js"
   }
 }

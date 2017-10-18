@@ -13,17 +13,23 @@ import logger from "redux-logger";
 import registerServiceWorker from "./registerServiceWorker";
 
 import rootReducer from "./reducer";
+import Api from "./Api";
 
-const Store = createStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunkMiddleware, logger))
-);
+Api.events().then(({ events }) => {
+    const Store = createStore(
+        rootReducer,
+        {
+            events: { events, page: 0 }
+        },
+        composeWithDevTools(applyMiddleware(thunkMiddleware, logger))
+    );
 
-ReactDOM.render(
-    <Provider store={Store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </Provider>,
-    document.getElementById("root")
-);
+    ReactDOM.hydrate(
+        <Provider store={Store}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </Provider>,
+        document.getElementById("root")
+    );
+});

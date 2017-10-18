@@ -1,3 +1,5 @@
+import "isomorphic-fetch";
+
 class Api {
     static URL = `https://api.stubhub.com`;
     static PROD_TOKEN = `7c1fedcd-ec63-3e4a-9cc3-00e12d9b34af`;
